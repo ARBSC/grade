@@ -1,8 +1,9 @@
+import os
 from sodapy import Socrata
 from ago import time_ago
 
 
-client = Socrata("data.cityofnewyork.us", "qxlfQ1RXHmrz1ZyVWQeiSXKUs")
+client = Socrata("data.cityofnewyork.us", os.environ['sodapy_key'])
 
 results = client.get("43nn-pn8j", limit=50, dba="BE JUICE", order='inspection_date')
 
