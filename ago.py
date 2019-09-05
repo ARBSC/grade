@@ -6,6 +6,8 @@ import timeago, datetime
 
 
 def time_ago(date):
+    """ Takes in a dateTime(UTC) and turns it into how long ago it was (Hours, Days, Weeks, Months, Years)
+    """
     today = datetime.date.today()
     date = datetime.datetime.strptime(date[:10], '%Y-%m-%d')
     md_ago = timeago.format(date, today)

@@ -39,16 +39,7 @@ for i in results:
         my_dict["d"+i['inspection_date']]['critical_flag'].append(i['critical_flag'])
 
 
-# print(my_dict['d2019-02-14T00:00:00.000'])
 for i in my_dict.values():
     my_list.append(i)
 
 my_list.reverse()
-# for x, s in zip(my_dict['d2019-02-14T00:00:00.000']['v_code'], my_dict['d2019-02-14T00:00:00.000']['v_description']):
-#     print(x, s)
-
-# print(my_list)
-
-key_secret = "3sj3pnrm34jlksvca2l15bxiq8jl610x305fj6b9rblkuchwci"
-
-key_id = "be9l89isexxhmo3yqe68hqp0y"
