@@ -17,7 +17,7 @@ Application that gathers information from New York Department of Health and pres
     pip install -r requirements.txt
     python app.py
 
-After you run the application is running, visit http://127.0.0.1:5000/
+After you run the application visit http://127.0.0.1:5000/
 ![landingpage](./screenshots/screenshot1.png)
 
 Once you click cards on the navigation you'll see the following page

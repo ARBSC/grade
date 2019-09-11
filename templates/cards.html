@@ -1,17 +1,17 @@
 {% extends "base.html" %}
-
 {% block main %}
 <div class="container">
    <div class="row" style="margin-top:5rem" >
+      {% set count = namespace(a=0) %}
       {% for item in data %}
-      
+      {% set count.a = count.a + 1 %}
       <div class="col-lg-4 col-md-6 mb-2">
          <!-- Card Narrower -->
          <div class="card card-cascade narrower">
             <!-- Card image -->
             <div class="view view-cascade overlay">
                <img  class="card-img-top" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg"
-                alt="Card image cap">
+                  alt="Card image cap">
                <a>
                   <div class="mask rgba-white-slight"></div>
                </a>
@@ -25,34 +25,24 @@
                <h6 class="blue-text pb-2"><strong>{{ item.addr|title }}</strong></h6>
                <!-- Text -->
                <p class="card-text"><strong>Violations were cited in the following area(s):</strong></p>
-              
-               
-
-
                <a class="btn btn-outline-danger waves-effect btn-lg btn-block mb-2"
-                data-toggle="collapse" href="#collapseExample1" aria-expanded="false" 
-                aria-controls="collapseExample">Critical Violations</a>
-              
-               <div class="collapse multi-collapse" id="collapseExample1">
+                  data-toggle="collapse" href="#collapseCriticalViolation{{count.a}}" aria-expanded="false" 
+                  aria-controls="collapseCriticalViolation{{count.a}}">Critical Violations</a>
+               {% for flag in item.critical_flag if flag == "Y" %}
+               <div class="collapse multi-collapse" id="collapseCriticalViolation{{count.a}}">
                   <div class="mt-3">
-                     
-                    
-                     <p class="alert alert-danger" role="alert">TEST</p>
-
+                     <p class="alert alert-danger" role="alert"> {{ item.v_description[loop.index0] }} </br> {{ item.v_code[loop.index0] }}</p>
                   </div>
                </div>
-
-               <a class="btn btn-outline-warning waves-effect btn-lg btn-block mb-2" data-toggle="collapse" href="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">Violations</a>
-              
-               <div class="collapse multi-collapse" id="collapseExample2">
+               {% endfor %}
+               <a class="btn btn-outline-warning waves-effect btn-lg btn-block mb-2" data-toggle="collapse" href="#collapseViolation{{count.a}}" aria-expanded="false" aria-controls="collapseViolation{{count.a}}">Violations</a>
+               {% for flag in item.critical_flag if flag == "N" %}
+               <div class="collapse multi-collapse" id="collapseViolation{{count.a}}">
                   <div class="mt-3">
-                     <p class="alert alert-warning" role="alert">Non-food contact surface improperly constructed. Unacceptable material used. Non-food contact surface or equipment improperly maintained and/or not properly sealed, raised, spaced or movable to allow accessibility for cleaning on all sides, above and underneath the unit.</p>
+                     <p class="alert alert-warning" role="alert">{{ item.v_description[loop.index0] }} </br> {{ item.v_code[loop.index0] }} </p>
                   </div>
                </div>
-
-
-
-
+               {% endfor %}
                <!-- Button -->
                <div class="btn-group">
                   <button type="button" class="btn btn-info">Info</button>
@@ -74,7 +64,6 @@
                <img src="..\static\img\grades\med_GP.gif" alt="Grade" class="float-right" width="50px" height="50px">
                {% endif %}
             </div>
-            
             <!-- Card footer -->
             <div class="card-footer text-muted text-center">
                <i class="far fa-clock pr-2"> {{ item.time_ago }}</i> 
@@ -82,7 +71,6 @@
          </div>
          <!-- Card Narrower -->
       </div>
-      
       {% endfor %}
    </div>
 </div>

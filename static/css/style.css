@@ -33,3 +33,9 @@ header,
 .mt-10, .my-10 {
     margin-top: 5rem!important;
 }
+
+.btn-outline-white {
+  border: 2px solid #e9ecef!important;
+  background-color: #e9ecef00!important;
+  color: #ffffff!important;
+}
